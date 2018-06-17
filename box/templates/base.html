@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link href="https://stackpath.bootstrapcdn.com/bootswatch/4.1.1/slate/bootstrap.min.css" rel="stylesheet" integrity="sha384-T5/MPhcu5PtijW3XQzMbwUJshIZS5VzRn+lpMXRN8EnZpxBc8yDYiGkTj7pTWBXQ" crossorigin="anonymous">
+    {% block extra_header %}
+
+    {% endblock %}
+</head>
+<body>
+<div class="container">
+    <div class="navbar">
+        <ul class="nav">
+            <li class="nav-item"><a class="nav-link active" href="{% url 'index' %}">Home</a></li>
+            <li class="nav-item"><a class="nav-link active" href="{% url 'people' %}">People</a></li>
+            <li class="nav-item"><a class="nav-link active" href="{% url 'new-person' %}">New Person</a></li>
+        </ul>
+    </div>
+<div class="jumbotron">
+    {% block content %}
+
+    {% endblock %}
+</div>
+</div>
+</body>
+</html>

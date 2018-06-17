@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block extra_header %}
+    <title>People</title>
+{% endblock %}
+
+{% block content %}
+    <form action="{% url 'new-person' %}" method="POST">
+        {% csrf_token %}
+        <table>
+            <tr>
+                <td>Name:</td>
+                <td><input type="text" name="name" /></td>
+            </tr>
+            <tr>
+                <td>Surname:</td>
+                <td><input type="text" name="surname" /></td>
+            </tr>
+            <tr>
+                <td>Description</td>
+                <td><input type="text" name="description" /></td>
+            <tr>
+                <td><br><br></td>
+            </tr>
+            <tr>
+                <td>Address</td>
+            </tr>
+            <tr>
+                <td>City:</td>
+                <td><input type="text" name="city" /></td>
+            </tr>
+            <tr>
+                <td>Street:</td>
+                <td><input type="text" name="street" /></td>
+            </tr>
+            <tr>
+                <td>House number:</td>
+                <td><input type="text" name="house_number" /></td>
+            </tr>
+            <tr>
+                <td>Flat number:</td>
+                <td><input type="number" name="flat_number" /></td>
+            </tr>
+            <tr><td><br></td></tr>
+            <tr>
+                <td>
+                    <button type="submit" name="Submit">Add person</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+{% endblock %}
+

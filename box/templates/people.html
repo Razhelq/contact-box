@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block extra_header %}
+    <title>People</title>
+{% endblock %}
+
+{% block content %}
+    <table>
+        {% for person in people %}
+        <tr>
+            <td>Name:</td>
+            <td>{{ person.name }}</td>
+            <td><a href="{% url 'modify-person' person.id %}">Modify person</a></td>
+        </tr>
+        <tr>
+            <td>Surname:</td>
+            <td>{{ person.surname }}</td>
+            <td><a href="{% url 'delete-person' person.id %}">Delete person</a></td>
+        </tr>
+        <tr>
+            <td>Description</td>
+            <td>{{ person.description }}</td>
+            <td><a href="{% url 'show-person' person.id %}">Show person</a></td>
+        </tr>
+        <tr>
+            <td><br></td>
+        </tr>
+        <tr>
+            <td>Address</td>
+        </tr>
+        <tr>
+            <td>City:</td>
+            <td>{{ person.address.city }}</td>
+        </tr>
+        <tr>
+            <td>Street:</td>
+            <td>{{ person.address.street }} {{ person.address.house_number }} {{ person.address.flat_number }}</td>
+        </tr>
+
+        <tr colspan="3"><td><br><hr><br></td></tr>
+        {% endfor %}
+    </table>
+{% endblock %}
+

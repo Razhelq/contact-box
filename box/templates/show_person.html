@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block extra_header %}
+    <title>Show person</title>
+{% endblock %}
+
+{% block content %}
+     <table>
+        <tr>
+            <td>Name:</td>
+            <td>{{ person.name }}</td>
+        </tr>
+        <tr>
+            <td>Surname:</td>
+            <td>{{ person.surname }}</td>
+        </tr>
+        <tr>
+            <td>Description</td>
+            <td>{{ person.description }}</td>
+        </tr>
+        <tr>
+            <td><br></td>
+        </tr>
+        <tr>
+            <td>Address</td>
+        </tr>
+        <tr>
+            <td>City:</td>
+            <td>{{ person.address.city }}</td>
+        </tr>
+        <tr>
+            <td>Street:</td>
+            <td>{{ person.address.street }} {{ person.address.house_number }} {{ person.address.flat_number }}</td>
+        </tr>
+    </table>
+{% endblock %}
+
