@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block extra_header %}
+    <title>Add email</title>
+{% endblock %}
+
+{% block content %}
+     {{ added }}
+<form action="{% url 'add-email' person.id %}" method="POST">
+    {% csrf_token %}
+    <table>
+        <tr>
+            <td>Address for {{ person.name }} {{ person.surname }}</td>
+        </tr>
+        <tr>
+            <td>Home email:</td>
+            <td><input type="text" name="home_email" /></td>
+        </tr>
+        <tr>
+            <td>Work email:</td>
+            <td><input type="text" name="work_email" /></td>
+        </tr>
+        <tr><td><br></td></tr>
+        <tr>
+            <td>
+                <button type="submit" name="Submit">Add email to person</button>
+            </td>
+        </tr>
+    </table>
+</form>
+{% endblock %}

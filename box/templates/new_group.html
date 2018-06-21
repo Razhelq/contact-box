@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block extra_header %}
+    <title>New group</title>
+{% endblock %}
+
+{% block content %}
+    {{ added }}<br><br>
+    <form action="{% url 'new-group' %}" method="POST">
+        {% csrf_token %}
+        <table>
+            <tr>
+                <td>Group name:</td>
+                <td><input type="text" name="name" /></td>
+            </tr>
+            <tr>
+                <td><br><br></td>
+            </tr>
+            <tr>
+                <td><button type="submit" name="submit">Add group</button></td>
+            </tr>
+        </table>
+    </form>
+{% endblock %}

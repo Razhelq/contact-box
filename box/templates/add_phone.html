@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block extra_header %}
+    <title>Add phone</title>
+{% endblock %}
+
+{% block content %}
+     {{ added }}
+<form action="{% url 'add-phone' person.id %}" method="POST">
+    {% csrf_token %}
+    <table>
+        <tr>
+            <td>Address for {{ person.name }} {{ person.surname }}</td>
+        </tr>
+        <tr>
+            <td>Home phone:</td>
+            <td><input type="text" name="home_phone" /></td>
+        </tr>
+        <tr>
+            <td>Work phone:</td>
+            <td><input type="text" name="work_phone" /></td>
+        </tr>
+        <tr><td><br></td></tr>
+        <tr>
+            <td>
+                <button type="submit" name="Submit">Add phone to person</button>
+            </td>
+        </tr>
+    </table>
+</form>
+{% endblock %}

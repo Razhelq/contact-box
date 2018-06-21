@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block extra_header %}
+    <title>Add address</title>
+{% endblock %}
+
+{% block content %}
+     {{ added }}
+<form action="{% url 'add-address' person.id %}" method="POST">
+    {% csrf_token %}
+    <table>
+        <tr>
+            <td>Address for {{ person.name }} {{ person.surname }}</td>
+        </tr>
+        <tr>
+            <td>City:</td>
+            <td><input type="text" name="city" /></td>
+        </tr>
+        <tr>
+            <td>Street:</td>
+            <td><input type="text" name="street" /></td>
+        </tr>
+        <tr>
+            <td>House number:</td>
+            <td><input type="text" name="house_number" /></td>
+        </tr>
+        <tr>
+            <td>Flat number:</td>
+            <td><input type="number" name="flat_number" /></td>
+        </tr>
+        <tr><td><br></td></tr>
+        <tr>
+            <td>
+                <button type="submit" name="Submit">Add address to person</button>
+            </td>
+        </tr>
+    </table>
+</form>
+{% endblock %}

@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block content %}
-     <table>
+    <table>
         <tr>
             <td>Name:</td>
             <td>{{ person.name }}</td>
@@ -19,19 +19,70 @@
             <td>{{ person.description }}</td>
         </tr>
         <tr>
+            <td><br><br></td>
+        </tr>
+        <tr>
+            <td><strong>Addresses</strong></td>
+        </tr>
+        {% for address in addresses %}
+            <tr>
+                <td>City:</td>
+                <td>{{ address.city }}</td>
+            </tr>
+            <tr>
+                <td>Street:</td>
+                <td>{{ address.street }} {{ address.house_number }} {{ address.flat_number }}</td>
+            </tr>
+            <tr>
+                <td><br></td>
+            </tr>
+        {% endfor %}
+        <td><hr></td>
+        <tr>
+            <td><strong>Phones</strong></td>
+        </tr>
+        {% for phone in phones %}
+            <tr>
+                <td>Home phone:</td>
+                <td>{{ phone.home_phone }}</td>
+            </tr>
+            <tr>
+                <td>Work phone:</td>
+                <td>{{ phone.work_phone }}</td>
+            </tr>
+            <tr>
+                <td><br></td>
+            </tr>
+        {% endfor %}
+        <td><hr></td>
+        <tr>
+            <td><strong>Emails</strong></td>
+        </tr>
+        {% for email in emails %}
+            <tr>
+                <td>Home email:</td>
+                <td>{{ email.home_email }}</td>
+            </tr>
+            <tr>
+                <td>Work email:</td>
+                <td>{{ email.work_email }}</td>
+            </tr>
+        {% endfor %}
+        <tr>
             <td><br></td>
         </tr>
         <tr>
-            <td>Address</td>
+            <td>
+                <strong>Groups:</strong>
+            </td>
         </tr>
-        <tr>
-            <td>City:</td>
-            <td>{{ person.address.city }}</td>
-        </tr>
-        <tr>
-            <td>Street:</td>
-            <td>{{ person.address.street }} {{ person.address.house_number }} {{ person.address.flat_number }}</td>
-        </tr>
+            {% for group in groups %}
+                <tr>
+                    <td>
+                        {{ group.name }}
+                    </td>
+                </tr>
+            {% endfor %}
     </table>
 {% endblock %}
 

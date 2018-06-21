@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block extra_headers %}
+    <title>Groups</title>
+{% endblock %}
+
+{% block content %}
+    <table>
+        <tr>
+            <td>
+                {{ added }}
+            </td>
+        </tr>
+        {% for group in groups %}
+            <tr>
+                <td style="text-align: center">
+                    {{ group.name }}
+                </td>
+                <td>
+                    <a href="{% url 'delete-from-group' group.id %}"><button>Delete group</button></a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                <a href="{% url 'add-to-group' group.id %}">Add person to this group</a>
+                </td>
+            </tr>
+            <tr>
+                <td><hr></td>
+            </tr>
+        {% endfor %}<br>
+    </table>
+{% endblock %}

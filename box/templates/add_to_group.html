@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block extra_headers %}
+    <title>Add to group</title>
+{% endblock %}
+
+{% block content %}
+    <table>
+        <form method="POST" action="{% url 'add-to-group' group.id %}">
+            {% csrf_token %}
+            <tr>
+                <td>Add person to {{ group.name }}:</td>
+                <td>
+                    <select name="person">
+                        {% for person in people %}
+                        <option value={{ person.id }}>{{ person.name }} {{ person.surname }}</option>
+                        {% endfor %}
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <button type="submit" name="submit">Add</button>
+                </td>
+            </tr>
+        </form>
+    </table>
+{% endblock %}
