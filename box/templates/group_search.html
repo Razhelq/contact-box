@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block extra_header %}
+    <title>Search group</title>
+{% endblock %}
+
+{% block content %}
+    <table>
+        <tr>
+            <td>Group {{ group.name }}</td>
+        </tr>
+        <tr>
+            <td>
+                <br><br>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                {{ found }}
+            </td>
+        </tr>
+        {% for person in people %}
+        <tr>
+            <td>{{ person.name }} {{ person.surname }}</td>
+        </tr>
+        {% endfor %}
+        <form method="POST" action="{% url 'group-search' group.id %}">
+            {% csrf_token %}
+            <tr>
+                <td>
+                    <br><br>
+                </td>
+            </tr>
+            <tr>
+                <td>Name:</td>
+                <td>
+                    <input type="text" name="name" />
+                </td>
+            </tr>
+            <tr>
+                <td>Surname:</td>
+                <td>
+                    <input type="text" name="surname" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <br>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <button type="submit" name="submit">Search</button>
+                </td>
+            </tr>
+        </form>
+    </table>
+{% endblock %}

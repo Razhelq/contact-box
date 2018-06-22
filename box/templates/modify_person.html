@@ -5,26 +5,44 @@
 {% endblock %}
 
 {% block content %}
-    <form action="{% url 'modify-person' person.id %}" method="POST">
+    <form action="{% url 'modify-person' person.id %}" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-        <table>
+        <table><tr>
+                <td colspan="3">{{ modified }}</td>
+            </tr>
             <tr>
                 <td>Name:</td>
-                <td><input type="text" name="name" placeholder="{{ person.name }}" value="{{ person.name }}"/></td>
+                <td>
+                    <input type="text" name="name" placeholder="{{ person.name }}" value="{{ person.name }}"/>
+                </td>
             </tr>
             <tr>
                 <td>Surname:</td>
-                <td><input type="text" name="surname"
-                           placeholder="{{ person.surname }}" value="{{ person.surname }}"/></td>
+                <td>
+                    <input type="text" name="surname"
+                           placeholder="{{ person.surname }}" value="{{ person.surname }}"/>
+                </td>
             </tr>
             <tr>
                 <td>Description</td>
-                <td><input type="text" name="description"
-                           placeholder="{{ person.description }}" value="{{ person.description }}"/></td>
+                <td>
+                    <input type="text" name="description"
+                           placeholder="{{ person.description }}" value="{{ person.description }}"/>
+                </td>
+            </tr>
+            <tr>
+                <td>Upload new photo:</td>
+                <td>
+                    <input id="id_image" type="file" class="" name="image">
+                </td>
+            </tr>
             <tr><td><br></td></tr>
             <tr>
-                <td colspan="3">{{ modified }}</td>
+                <td>
+                    <button type="submit" name="submit">Modify</button>
+                </td>
             </tr>
+            <tr><td><br></td></tr>
             <tr>
                 <td><a href="{% url 'add-address' person.id %}" method="GET">Add address</a></td>
             </tr>
@@ -37,36 +55,3 @@
         </table>
     </form>
 {% endblock %}
-
-
-            <!--<tr><td><hr></td></tr>-->
-            <!--<tr>-->
-                <!--<td>Address</td>-->
-            <!--</tr>-->
-            <!--<tr>-->
-                <!--<td>City:</td>-->
-                <!--<td><input type="text" name="city"-->
-                           <!--placeholder="{{ person.address.city }}" value="{{ person.address.city }}"/></td>-->
-            <!--</tr>-->
-            <!--<tr>-->
-                <!--<td>Street:</td>-->
-                <!--<td><input type="text" name="street"-->
-                           <!--placeholder="{{ person.address.street }}" value="{{ person.address.street }}"/></td>-->
-            <!--</tr>-->
-            <!--<tr>-->
-                <!--<td>House number:</td>-->
-                <!--<td><input type="text" name="house_number"-->
-                           <!--placeholder="{{ person.address.house_number }}" value="{{ person.address.house_number }}"/></td>-->
-            <!--</tr>-->
-            <!--<tr>-->
-                <!--<td>Flat number:</td>-->
-                <!--<td><input type="number" name="flat_number"-->
-                           <!--placeholder="{{ person.address.flat_number }}" value="{{ person.address.flat_number }}"/></td>-->
-            <!--</tr>-->
-            <!--<tr><td><br><br></td></tr>-->
-            <!--<tr>-->
-                <!--<td>-->
-                    <!--<button type="submit" name="Submit">Modify person</button>-->
-                <!--</td>-->
-            <!--</tr>-->
-            <!--<tr><td><br></td></tr>-->

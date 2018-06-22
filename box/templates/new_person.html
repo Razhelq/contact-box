@@ -6,7 +6,7 @@
 
 {% block content %}
     {{ added }}<br><br>
-    <form action="{% url 'new-person' %}" method="POST">
+    <form action="{% url 'new-person' %}" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         <table>
             <tr>
@@ -22,6 +22,11 @@
                 <td><input type="text" name="description" /></td>
             <tr>
                 <td><br><br></td>
+            </tr>
+            <tr>
+                <td>
+                    <input id="id_image" type="file" class="" name="image">
+                </td>
             </tr>
             <tr>
                 <td><button type="submit" name="submit">Add person</button></td>

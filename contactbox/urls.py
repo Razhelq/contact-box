@@ -1,9 +1,9 @@
 from django.contrib import admin
 from django.urls import path, re_path
-# from django.conf import settings
-# from django.conf.urls.static import static
+from django.conf import settings
+from django.conf.urls.static import static
 from box.views import Index, NewPerson, ModifyPerson, DeletePerson, ShowPerson, People, AddAddress, AddPhone, AddEmail
-from box.views import NewGroup, DeleteGroup, AddToGroup, DeleteFromGroup, Groups
+from box.views import NewGroup, DeleteGroup, AddToGroup, DeleteFromGroup, Groups, GroupSearch
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -20,6 +20,7 @@ urlpatterns = [
     re_path(r'^delete_group/(?P<id>\d+)/$', DeleteGroup.as_view(), name='delete-group'),
     re_path(r'^add_to_group/(?P<id>\d+)/$', AddToGroup.as_view(), name='add-to-group'),
     re_path(r'^delete_from_group/(?P<id>\d+)/$', DeleteFromGroup.as_view(), name='delete-from-group'),
-    path(r'groups/', Groups.as_view(), name='groups'),
-]
+    path('groups/', Groups.as_view(), name='groups'),
+    re_path(r'group-search/(?P<id>\d+)/$', GroupSearch.as_view(), name='group-search'),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

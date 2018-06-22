@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views import View
 from .models import Person, Address, Phone, Email, Group
+from .forms import ImageUploadForm
 
 
 class Index(View):
@@ -28,6 +29,9 @@ class NewPerson(View):
             surname=surname,
             description=description,
         )
+        form = ImageUploadForm(request.POST, request.FILES)
+        if form.is_valid():
+            person.photo = form.cleaned_data['image']
         person.save()
         return render(request, 'new_person.html', {
             'added': 'New person has been added'
@@ -45,27 +49,16 @@ class ModifyPerson(View):
         name = request.POST.get('name')
         surname = request.POST.get('surname')
         description = request.POST.get('description')
-        # city = request.POST.get('city')
-        # street = request.POST.get('street')
-        # house_number = request.POST.get('house_number')
-        # flat_number = request.POST.get('flat_number')
+        form = ImageUploadForm(request.POST, request.FILES)
+        if form.is_valid():
+            person.photo = form.cleaned_data['image']
         if name:
             person.name = name
         if surname:
             person.surname = surname
         if description:
             person.description = description
-        # if city:
-        #     person.address.city = city
-        # if street:
-        #     person.address.street = street
-        # if house_number:
-        #     person.address.house_number = house_number
-        # if flat_number:
-        #     person.address.flat_number = flat_number
-        # person.address.save()
         person.save()
-        person = Person.objects.get(id=id)
         return render(request, 'modify_person.html', {
             'person': person,
             'modified': 'Person has been modified'
@@ -214,4 +207,26 @@ class Groups(View):
         groups = Group.objects.all()
         return render(request, 'groups.html', {
             'groups': groups,
+        })
+
+
+class GroupSearch(View):
+    def get(self, request, id):
+        group = Group.objects.get(id=id)
+        return render(request, 'group_search.html', {
+            'group': group
+        })
+    def post(self, request, id):
+        group = Group.objects.get(id=id)
+        people = Person.objects.filter(group__id=id)
+        name = request.POST.get('name')
+        surname = request.POST.get('surname')
+        if name:
+            people = people.filter(name=name)
+        if surname:
+            people = people.filter(surname=surname)
+        return render(request, 'group_search.html', {
+            'people': people,
+            'group': group,
+            'found': 'People found:'
         })

@@ -22,7 +22,12 @@
             </tr>
             <tr>
                 <td>
-                <a href="{% url 'add-to-group' group.id %}">Add person to this group</a>
+                    <a href="{% url 'add-to-group' group.id %}">Add person to this group</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="{% url 'group-search' group.id %}">Search for person in this group</a>
                 </td>
             </tr>
             <tr>

@@ -15,12 +15,12 @@ class Person(models.Model):
         max_length=128,
         null=True
     )
-    # photo = models.ImageField(
-    #     verbose_name='Photo',
-    #     upload_to='photo/%Y/%m/%D',
-    #     blank=True,
-    #     null=True
-    # )
+    photo = models.ImageField(
+        verbose_name='Photo',
+        upload_to='photos/',
+        blank=True,
+        default='photos/None/no-img.jpg'
+    )
 
 
 class Address(models.Model):
